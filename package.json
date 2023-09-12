@@ -1,0 +1,34 @@
+{
+  "name": "hngtasktwo",
+  "version": "1.0.0",
+  "description": "HNG10 second task: CRUD system that stores, retrieve, update and delete data",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DONNWILZY/HNGTaskTwo.git"
+  },
+  "keywords": [
+    "TASK",
+    "HNG10",
+    "HNG",
+    "CRUD",
+    "STAGE-TWO"
+  ],
+  "author": "EFFIONG GODSWILL",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DONNWILZY/HNGTaskTwo/issues"
+  },
+  "homepage": "https://github.com/DONNWILZY/HNGTaskTwo#readme",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.1",
+    "nodemon": "^3.0.1"
+  }
+}
