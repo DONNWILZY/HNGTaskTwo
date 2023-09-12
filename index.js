@@ -7,6 +7,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || 5001;
 
+const userRoute = require('./route/userRoute'); 
+app.use('/api', userRoute);
 
 
 
