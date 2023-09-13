@@ -11,9 +11,9 @@ router.post('/', validateCreateUser,  handleValidationErrors, createUser);
 router.get('/:user_id', );
 
 // PUT /api/{user_id}: Update details of an existing person.
-router.put('/:user_id', );
+router.put('/:user_id', updateUser);
 
 // DELETE /api/{user_id}: Remove a person.
-router.delete('/:user_id', );
+router.delete('/:user_id', deleteUser);
 
 module.exports = router;
