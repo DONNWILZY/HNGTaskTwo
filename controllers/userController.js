@@ -74,12 +74,98 @@ const updateUser = async (req, res) => {
   };
 
 
+// Function to get a user by their ID or query a field
+const getUserById = async (req, res) => {
+    try {
+      const { user_id } = req.params; // Assuming user_id is passed in the URL parameters
+      const { field, value } = req.query; // Extract query parameters
+  
+      let query;
+  
+      if (field && value) {
+        // If both 'field' and 'value' are provided, use them to search for a user
+        query = { [field]: value };
+      } else {
+        // If 'field' and 'value' are not provided, assume 'user_id' is used
+        query = { _id: user_id };
+      }
+  
+      // Find the user based on the query
+      const user = await User.findOne(query);
+  
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      res.json(user); // Return the user data in the response
+    } catch (error) {
+      // Handle the error
+      const errorMessage = error.message || 'Could not retrieve user';
+      res.status(500).json({ error: errorMessage });
+    }
+  };
+
+  // Function to fetch all users with optional field-based filtering
+// const getAllUsers = async (req, res) => {
+//   try {
+//     const { field, value } = req.query; // Extract query parameters
+
+//     let query = {};
+
+//     if (field && value) {
+//       // If both 'field' and 'value' are provided, use them to filter users
+//       query = { [field]: value };
+//     }
+
+//     // Find users based on the query
+//     const users = await User.find(query);
+
+//     res.json(users); // Return the users data in the response
+//   } catch (error) {
+//     // Handle the error
+//     const errorMessage = error.message || 'Could not retrieve users';
+//     res.status(500).json({ error: errorMessage });
+//   }
+// };
+
+// Function to fetch users with optional query parameters
+const getAllUsers = async (req, res) => {
+    try {
+      const queryParams = req.query;
+  
+      // Initialize an empty query object
+      let query = {};
+  
+      // Iterate through all query parameters and add them to the query object
+      for (const param in queryParams) {
+        query[param] = queryParams[param];
+      }
+  
+      // Find users based on the query
+      const users = await User.find(query);
+  
+      if (users.length === 0) {
+        return res.status(404).json({ error: 'No matching users found' });
+      }
+  
+      res.json(users); // Return the users data in the response
+    } catch (error) {
+      // Handle the error
+      const errorMessage = error.message || 'Could not retrieve users';
+      res.status(500).json({ error: errorMessage });
+    }
+  };
+  
+
+
 
 
 const userController = {
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserById,
+    getAllUsers
   };
 
   module.exports = userController;
