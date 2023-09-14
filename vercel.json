@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "name": "HNGTaskTwo",
+    "name": "hngtasktwo",
     "builds": [
       {
         "src": "index.js",
