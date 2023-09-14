@@ -1,7 +1,7 @@
 const User = require ('../models/User');
 
 
-// Function to create a new user
+//  create a new user
 const createUser = async (req, res) => {
     try {
       const { name, dob, gender, email, phone, address, socialMedia, occupation, interest, bio,} = req.body;
@@ -28,11 +28,12 @@ const createUser = async (req, res) => {
     }
   };
 
-  // Function to update a user's information
+  // Update user 
 const updateUser = async (req, res) => {
     try {
-      const { user_id } = req.params; // Assuming user_id is passed in the URL parameters
-      const updatedUserData = req.body; // The updated user data sent in the request body
+      const { user_id } = req.params; 
+       // The updated user data sent in the request body
+      const updatedUserData = req.body;
   
       // Find the user by user_id
       const user = await User.findById(user_id);
@@ -44,8 +45,9 @@ const updateUser = async (req, res) => {
       // Update the user's information
       user.set(updatedUserData);
       const updatedUser = await user.save();
-  
-      res.json(updatedUser); // Return the updated user data in the response
+      
+      // Return the updated user data in the response
+      res.json(updatedUser); 
     } catch (error) {
       // Handle the error
       const errorMessage = error.message || 'Could not update user';
@@ -56,7 +58,7 @@ const updateUser = async (req, res) => {
 
   const deleteUser = async (req, res) => {
     try {
-      const { user_id } = req.params; // Assuming user_id is passed in the URL parameters
+      const { user_id } = req.params; 
   
       // Find and remove the user by user_id
       const deletedUser = await User.findByIdAndRemove(user_id);
@@ -64,8 +66,8 @@ const updateUser = async (req, res) => {
       if (!deletedUser) {
         return res.status(404).json({ error: 'User not found' });
       }
-  
-      res.json({ message: 'User deleted successfully' }); // Response message for successful deletion
+      // Response message for successful deletion
+      res.json({ message: 'User deleted successfully' }); 
     } catch (error) {
       // Handle the error
       const errorMessage = error.message || 'Could not delete user';
@@ -74,11 +76,13 @@ const updateUser = async (req, res) => {
   };
 
 
-// Function to get a user by their ID or query a field
+//get an indivual user by their ID or query a field
 const getUserById = async (req, res) => {
     try {
-      const { user_id } = req.params; // Assuming user_id is passed in the URL parameters
-      const { field, value } = req.query; // Extract query parameters
+      const { user_id } = req.params; 
+
+      // Extract query parameters e.g ?filed=name&value=effiong Godswill
+      const { field, value } = req.query; 
   
       let query;
   
@@ -96,8 +100,9 @@ const getUserById = async (req, res) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-  
-      res.json(user); // Return the user data in the response
+      
+      // Return the user data in the response
+      res.json(user); 
     } catch (error) {
       // Handle the error
       const errorMessage = error.message || 'Could not retrieve user';
@@ -105,35 +110,13 @@ const getUserById = async (req, res) => {
     }
   };
 
-  // Function to fetch all users with optional field-based filtering
-// const getAllUsers = async (req, res) => {
-//   try {
-//     const { field, value } = req.query; // Extract query parameters
 
-//     let query = {};
-
-//     if (field && value) {
-//       // If both 'field' and 'value' are provided, use them to filter users
-//       query = { [field]: value };
-//     }
-
-//     // Find users based on the query
-//     const users = await User.find(query);
-
-//     res.json(users); // Return the users data in the response
-//   } catch (error) {
-//     // Handle the error
-//     const errorMessage = error.message || 'Could not retrieve users';
-//     res.status(500).json({ error: errorMessage });
-//   }
-// };
-
-// Function to fetch users with optional query parameters
+        // Function to fetch users with optional query parameters
 const getAllUsers = async (req, res) => {
     try {
       const queryParams = req.query;
   
-      // Initialize an empty query object
+        // Initialize an empty query object
       let query = {};
   
       // Iterate through all query parameters and add them to the query object
@@ -147,8 +130,8 @@ const getAllUsers = async (req, res) => {
       if (users.length === 0) {
         return res.status(404).json({ error: 'No matching users found' });
       }
-  
-      res.json(users); // Return the users data in the response
+      // Return the users data in the response
+      res.json(users); 
     } catch (error) {
       // Handle the error
       const errorMessage = error.message || 'Could not retrieve users';
