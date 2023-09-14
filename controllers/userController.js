@@ -4,11 +4,10 @@ const User = require ('../models/User');
 //  create a new user
 const createUser = async (req, res) => {
     try {
-      const { name, dob, gender, email, phone, address, socialMedia, occupation, interest, bio,} = req.body;
+      const { name,  gender, email, phone, address, socialMedia, occupation, interest, bio,} = req.body;
   
       const newUser = new User({
         name,
-        dob,
         gender,
         email,
         phone,
@@ -105,6 +104,7 @@ const getUserById = async (req, res) => {
       res.json(user); 
     } catch (error) {
       // Handle the error
+      console.log(res.body);
       const errorMessage = error.message || 'Could not retrieve user';
       res.status(500).json({ error: errorMessage });
     }

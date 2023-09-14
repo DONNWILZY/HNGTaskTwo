@@ -42,7 +42,7 @@ app.use('/api', userRoute);
 
 
 // Database connection
-mongoose.connect(process.env.databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 /// db connection error
