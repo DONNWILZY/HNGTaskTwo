@@ -22,6 +22,42 @@ The base URL for accessing the API is:
 ```
 https://hngtasktwo.vercel.app`
 ```
+## Project Objectives
+```
+
+User Creation: Implement a feature to create user profiles with various details, including personal information, contact information, and social media profiles.
+
+User Retrieval: Develop functionality to retrieve user profiles by user ID or specific search criteria.
+
+User Update: Enable users to update their profiles and administrators to modify user information as needed.
+
+User Deletion: Implement a feature to delete user profiles..
+
+Listing Users: Create a user listing feature that allows users to view a list of registered users based on specified criteria.
+```
+
+## Key Features:
+User Registration: Capture user details, including name, date of birth, gender, email, phone, and address.
+Social Media Profiles: Allow users to associate social media profiles (e.g., Facebook, Twitter) with their accounts.
+Search and Filtering: Implement search and filtering options for user retrieval.
+User Profile Management: Enable users to update their profiles
+User Deletion: Implement a secure process for user account deletion.
+User Listing: Provide an interface for listing users based on various criteria.
+
+## Technologies and Tools:
+Programming Languages: JavaScript (Node.js)
+Web Framework: Express.js
+Database: MongoDB 
+API Testing: Postman, or similar tools
+Version Control: Git and GitHub
+Deployment: Vercel.com
+
+
+## Getting Started:
+Clone the project repository from GitHub using ``git clone https://github.com/DONNWILZY/HNGTaskTwo``
+Install the necessary dependencies using Node.js package manager (npm).
+Configure the database connection. `process.env.YourOwnDataBase`
+Start the application locally for development and testing
 
 ## Authentication
 
@@ -231,6 +267,36 @@ https://hngtasktwo.vercel.app`
 ]
 ```
 
+## Test Suites and Frameworks
+Mocha
+Description: `Mocha` is a JavaScript test framework used for writing and running unit tests and integration tests.
+Installation: Install Mocha globally using npm:
+
+``npm install -g mocha``
+````Chai````
+Description: Chai is an assertion library for Node.js that works seamlessly with Mocha. It provides expressive and readable assertions.
+Installation: Install Chai as a development dependency in your project directory:
+``npm install chai --save-dev``
+
+`Test Execution`
+Running Unit Tests
+Navigate to the project's root directory.
+Run the following command to execute unit tests:
+
+mocha test/unit
+Running Integration Tests
+Navigate to the project's root directory.
+Run the following command to execute integration tests:
+
+
+mocha test/integration
+Running API Tests with Postman (Optional)
+Open Postman.
+Import the provided Postman collection and environment files.
+Run the collection to execute API tests.
+Test Reports
+Test reports will be generated automatically during test execution. You can view test reports in the console or res.json
+
 ## Known Limitations and Assumptions
 
 /// LIST OF LIMITTIONS
@@ -238,6 +304,9 @@ https://hngtasktwo.vercel.app`
 ## Local Setup and Deployment
 
 INTRUCTION ON LOAL SETUPS AND DEPENDEN
+clone the project, Setup databse (mongodb), Install dependencies and run `npm run start` or type ``nodemon``
+
+.
 ---
 
 @startuml
@@ -283,6 +352,12 @@ class CRUD {
 | - url: String         |
 -------------------------
 
-
-
+## Future Enhancements:
+Implement user authentication for secure access.
+Develop user roles and permissions.
+Enhance user interface for improved user experience.
+Add support for more database systems.
+Expand social media integration options.
+.
+---
 You are free to clone and also contribute
