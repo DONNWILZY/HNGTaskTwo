@@ -240,4 +240,49 @@ https://hngtasktwo.vercel.app`
 INTRUCTION ON LOAL SETUPS AND DEPENDEN
 ---
 
+@startuml
+
+class CRUD {
+  + create(object: Object): Object
+  + read(id: int): Object
+  + update(object: Object): Object
+  + delete(id: int): void
+}
+
+@enduml
+
+---------------------
+|      User         |
+---------------------
+| - id: String      |
+| - name: String    |
+| - email: String   |
+| - dob: Date       |
+| - gender: String  |
+| - address: String |
+| - phone: String   |
+---------------------
+| + createUser()   |
+| + getUserById()  |
+| + updateUser()   |
+| + deleteUser()   |
+| + getAllUsers()  |
+---------------------
+
+----------------------
+|   Address          |
+----------------------
+| - home: String     |
+| - billing: String  |
+----------------------
+
+-------------------------
+|   SocialMedia         |
+-------------------------
+| - platform: String    |
+| - url: String         |
+-------------------------
+
+
+
 You are free to clone and also contribute
