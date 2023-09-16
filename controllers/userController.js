@@ -78,38 +78,41 @@ const updateUser = async (req, res) => {
 
 //get an indivual user by their ID or query a field
 const getUserById = async (req, res) => {
-    try {
-      const { user_id } = req.params; 
+  try {
+    const { user_id } = req.params;
+    const queryParams = req.query;
 
-      // Extract query parameters e.g ?filed=name&value=effiong Godswill
-      const { field, value } = req.query; 
-  
-      let query;
-  
-      if (field && value) {
-        // If both 'field' and 'value' are provided, use them to search for a user
-        query = { [field]: value };
-      } else {
-        // If 'field' and 'value' are not provided, assume 'user_id' is used
-        query = { _id: user_id };
-      }
-  
-      // Find the user based on the query
-      const user = await User.findOne(query);
-  
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-      
-      // Return the user data in the response
-      res.json(user); 
-    } catch (error) {
-      // Handle the error
-      console.log(res.body);
-      const errorMessage = error.message || 'Could not retrieve user';
-      res.status(500).json({ error: errorMessage });
+    if (!user_id && Object.keys(queryParams).length === 0) {
+      return res.status(400).json({ error: 'Invalid request. Provide either user_id or query parameters.' });
     }
-  };
+
+    let query;
+
+    if (user_id) {
+      query = { _id: user_id };
+    } else {
+      query = {};
+
+      // Add query parameters to the query object
+      for (const key in queryParams) {
+        query[key] = queryParams[key];
+      }
+    }
+
+    const user = await User.findOne(query);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(user);
+  } catch (error) {
+    // Handle the error
+    const errorMessage = error.message || 'Could not retrieve user';
+    res.status(500).json({ error: errorMessage });
+  }
+};
+
 
 
         // Function to fetch users with optional query parameters
